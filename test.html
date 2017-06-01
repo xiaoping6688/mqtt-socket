@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Test MQTT</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+  #logText {
+    height: 500px;
+  }
+</style>
+<script>
+  var YourDevID = '123';
+</script>
+</head>
+
+<body>
+<div id="logText"><div>
+
+<script src="./lib/crypto-js.js"></script>
+<script src="./lib/mqttws31.js"></script>
+<script src="./config.js"></script>
+<script src="./mqtt.js"></script>
+<script>
+  function logger (msg) {
+    var debugText = document.getElementById('logText');
+    debugText.innerHTML += msg + '<br>';
+    debugText.scrollTop = debugText.scrollHeight;
+  }
+
+  function onConnected () {
+    // Do nothing
+  }
+
+  function onReceived (tag, value) {
+    // TODO
+  }
+
+  mqtt.setDebuger(logger);
+  mqtt.connect(MQTT_CONIFG, onConnected, onReceived);
+  mqtt.sendToAll(110, {});
+  mqtt.sendToUser(YourDevID, 110, {});
+
+</script>
+</body>
+</html>
