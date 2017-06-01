@@ -1,5 +1,6 @@
 # mqtt-socket
-Eclipse Paho MQTT Client 封装 (javascript)，支持node module引入
+Eclipse Paho MQTT Client 封装 (javascript)，支持node module引入；
+> 该例主要是基于使用阿里云MQTT，其他推荐使用[MQTT.js](https://github.com/mqttjs/MQTT.js)：The MQTT client for Node.js and the browser
 
 ## Usage
 
