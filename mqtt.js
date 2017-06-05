@@ -140,12 +140,14 @@
     trace('mqtt connect success')
     hasConnected = true
 
-    client.subscribe(MQTT_CONIFG.topic, {
-      qos: 0,
-      onSuccess: function() {
-        trace('topic subscribe success')
-      }
-    })
+    if (!MQTT_CONIFG.noSubscribe) {
+      client.subscribe(MQTT_CONIFG.topic, {
+        qos: 0,
+        onSuccess: function() {
+          trace('topic subscribe success')
+        }
+      })
+    }
 
     if (typeof connectCallback === 'function'){
       connectCallback()
