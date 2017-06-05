@@ -65,7 +65,9 @@
 
     if (client) {
       clearTimeout(reconHandle)
-      client.disconnect()
+      if (client.isConnected()) {
+        client.disconnect()
+      }
       client = null
     }
   }
