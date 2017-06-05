@@ -130,9 +130,9 @@
     if (typeof logger === 'function') {
       logger(log)
     } else {
-      if (DEBUG_ENV !== 'production') {
+      // if (DEBUG_ENV !== 'production') {
         console[level](log)
-      }
+      // }
     }
   }
 
