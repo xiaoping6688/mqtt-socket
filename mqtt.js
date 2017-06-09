@@ -78,12 +78,12 @@
   function send (cmd, args) {
     trace('[Send] tag: ' + cmd + ' value: ' + (args ? JSON.stringify(args) : ''))
     if (client) {
-      var msg = {
-        order: cmd,
-        data: args
-      }
-
       if (hasConnected) {
+        var msg = {
+          tag: cmd,
+          value: args
+        }
+
         var message = new Paho.MQTT.Message(JSON.stringify(msg))
         message.destinationName = MQTT_CONIFG.topic
         client.send(message)
@@ -102,12 +102,12 @@
   function sendToUser (id, cmd, args) {
     trace('[Send] to: ' + id + ' tag: ' + cmd + ' value: ' + (args ? JSON.stringify(args) : ''))
     if (client) {
-      var msg = {
-        order: cmd,
-        data: args
-      }
-
       if (hasConnected) {
+        var msg = {
+          tag: cmd,
+          value: args
+        }
+
         var message = new Paho.MQTT.Message(JSON.stringify(msg))
         message.destinationName = MQTT_CONIFG.topic + '/p2p/' + MQTT_CONIFG.preClientId + id
         client.send(message)
@@ -176,8 +176,8 @@
   function onMessageArrived (message) {
     var topic = message.destinationName
     var payload = message.payloadString ? JSON.parse(message.payloadString) : {}
-    var tag = payload.order
-    var value = payload.data
+    var tag = payload.tag
+    var value = payload.value
     trace('[Received] tag: ' + tag + ' value: ' + (value ? JSON.stringify(value) : ''))
 
     if (typeof receiveCallback === 'function') {
