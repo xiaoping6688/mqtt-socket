@@ -146,11 +146,18 @@
 
     if (!MQTT_CONIFG.noSubscribe) {
       client.subscribe(MQTT_CONIFG.topic, {
-        qos: 0,
+        qos: MQTT_CONIFG.topicQos,
         onSuccess: function() {
           trace('topic subscribe success')
         }
       })
+      
+      // client.subscribe(MQTT_CONIFG.topic + '/p2p', {
+      //   qos: 0,
+      //   onSuccess: function() {
+      //     trace('p2p subscribe success')
+      //   }
+      // })
     }
 
     if (typeof connectCallback === 'function'){
@@ -178,11 +185,11 @@
     var payload = message.payloadString ? JSON.parse(message.payloadString) : {}
     var tag = payload.tag
     var value = payload.value
-    trace('[Received] tag: ' + tag + ' value: ' + (value ? JSON.stringify(value) : ''))
+    trace('[Received] tag: ' + tag + ' value: ' + (value ? JSON.stringify(value) : '') + ' topic: ' + topic)
 
     if (typeof receiveCallback === 'function') {
       try {
-        receiveCallback(tag, value)
+        receiveCallback(tag, value, topic)
       } catch (err) {
         trace(err, 'error')
       }
