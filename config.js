@@ -3,6 +3,7 @@ var MQTT_CONIFG = {};
 MQTT_CONIFG.host = 'mqtt-cn-xxx.mqtt.aliyuncs.com';
 MQTT_CONIFG.port = 80;
 MQTT_CONIFG.topic = 'Topic_Demo';
+MQTT_CONIFG.topicQos = 2;
 MQTT_CONIFG.useTLS = false;
 MQTT_CONIFG.accessKey = 'xxx';
 MQTT_CONIFG.secretKey = 'xxx';
